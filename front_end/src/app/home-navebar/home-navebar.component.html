@@ -1,0 +1,88 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light gradient-custom-2">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">Brand</a>
+
+    <!-- Toggle button -->
+    <!-- <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+      <d ngbDropdown class="col control ">
+        <a id="profile" type="button" class="btn mx-3 mb-2" *ngIf="loggedIN" ngbDropdownToggle>
+          <i class="fa-solid fa-user fa-2xl mb-2" style="color: #f0bc00;"></i>
+          <div class="dropdown-menu mx-3" ngbDropdownMenu aria-labelledby="profile">
+            <button class=" " routerLink="/profile" ngbDropdownItem>Profile</button>
+            <button class=" " routerLink="/logout" ngbDropdownItem>Logout</button>
+      
+          </div>
+        </a>
+      </d>
+      </button> -->
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse d-flex justify-content-between navbar-collapse" id="navbarSupportedContent">
+      <!-- Left links -->
+      <div class="">
+        <div ngbDropdown class="d-inline-block">
+          <button type="button" class="btn btn-warning" id="dropdownBasic1" ngbDropdownToggle>
+            Categories
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <div *ngFor="let category of categories" ngbDropdown class="btn-outline-warning dropend">
+              <button type="button" routerLink="/category/{{category.id}}" class="btn w-75">{{category.category}}</button>
+              <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                <button type="button" class="btn  dropdown-toggle-split w-50" ngbDropdownToggle></button>
+                <div class="dropdown-menu" ngbDropdownMenu>
+                  <button *ngFor="let child of category.child_category" ngbDropdownItem>{{child.category}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Left links -->
+
+      <!-- Search form -->
+      <form class="d-flex w-50 input-group ">
+        <input type="search" class="form-control" placeholder="Search" aria-label="Search" />
+        <button class="btn btn-warning" type="button">
+          Search
+        </button>
+      </form>
+      <!-- <section class="col-1 d-flex flex-row-reverse mx-5  text-white"> -->
+      <div class="mx-5">
+        <div class="row mt-3 mx-3">
+          <p class="col-6 control " *ngIf="!loggedIN">
+            <a class="btn btn-outline-secondary" routerLink="/signUp">
+              <span> Sign Up </span>
+            </a>
+          </p>
+          <p class="col control" *ngIf="!loggedIN">
+            <a class="btn btn-outline-danger" routerLink="/login">
+              <span> Login </span>
+            </a>
+          </p>
+          <!-- <p class="col-1 bg-danger radues  h-25">1</p> -->
+          <button class="col btn">
+            <i class="fa-solid fa-cart-shopping  fa-2xl" style="color: #FFD43B;"></i>
+          </button>
+          <d ngbDropdown class=" col ">
+            <a id="profile" type="button" class="btn mx-3 mb-2" *ngIf="loggedIN" ngbDropdownToggle>
+              <i class="fa-solid fa-user fa-2xl mb-2" style="color: #f0bc00;"></i>
+              <div class="dropdown-menu mx-3" ngbDropdownMenu aria-labelledby="profile">
+                <button class=" " routerLink="/profile" ngbDropdownItem>Profile</button>
+                <button class=" " routerLink="/logout" ngbDropdownItem>Logout</button>
+              </div>
+            </a>
+            </d>
+            </div>
+        </div>
+        <!-- </section> -->
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+
+<!-- Navbar -->

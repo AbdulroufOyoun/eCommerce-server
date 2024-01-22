@@ -1,0 +1,82 @@
+<app-home-navBar />
+<app-category-container />
+
+<main>
+  <div class="border">
+    <div class="container py-3 w-75">
+      <div class=" h1 text-center">Shopping Cart</div>
+      <div *ngFor="let product of cart_products" class="card">
+        <div class="row justify-content-between ">
+          <div class="col-md-7 px-3">
+            <div class="card-block px-6">
+              <h4 class="card-title">{{product.product_id.title}} </h4>
+              <p class="card-text">{{product.product_id.description}}</p>
+              <p>{{product.product_id.price}}&euro;</p>
+              <br>
+              <button type="button" class="mt-auto btn gradient-custom-2  ">Order</button>
+            </div>
+          </div>
+          <div class="col-3 ">
+            <img class="img-thumbnail rounded float-right"
+              src="http://127.0.0.1:8000/products_posters/{{product.product_id.poster}}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--  -->
+  </div>
+  <div class="container mt-3 card">
+    <nav class="py-2">
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#later" type="button"
+          role="tab" aria-controls="nav-home" aria-selected="true">
+          Saved for later
+        </button>
+        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#orders" type="button"
+          role="tab" aria-controls="nav-profile" aria-selected="false">
+          Ordered
+        </button>
+
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3 py-2"
+        id="later" name="later" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div *ngFor="let product of orders" class="col ">
+          <div class="card h-100 shadow-sm"> <img
+              src="http://127.0.0.1:8000/products_posters/{{product.product_id.poster}}" class="card-img-top" alt="...">
+            <div class="label-top shadow-sm text-center">{{product.product_id.title}}</div>
+            <div class="card-body">
+              <div class="clearfix mb-3"> <span class="float-start price-hp">{{product.product_id.price}}&euro;</span>
+                <span class="float-end btn btn-sm ">{{product.category}}</span>
+              </div>
+              <h5 class="card-title">{{product.product_id.description}}</h5>
+              <div class="text-center my-4"> <a href="#" class="btn btn-warning">Check offer</a> </div>
+              <div class="clearfix mb-1"> <span class="float-start  btn btn-outline-warning"><i
+                    class="fa-regular fa-credit-card"></i></span>
+                <span class="float-end btn btn-outline-warning"><i class="fa-solid fa-cart-shopping"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="body" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="form-group">
+          <label for="formGroupExampleInput2">What is your artical's body
+          </label>
+          <input type="text" class="form-control" id="orders" name="orders" placeholder="Body" required />
+        </div>
+      </div>
+      <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="image" name="image" multiple />
+          <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">post</button>
+      </div>
+    </div>
+  </div>
+</main>

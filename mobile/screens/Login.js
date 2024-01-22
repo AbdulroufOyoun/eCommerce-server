@@ -1,0 +1,62 @@
+import React from "react";
+import { View } from "react-native";
+import { Button, ImageBackground } from "react-native";
+import image from '../backgrounds/login_background.png'
+import { TextInput } from 'react-native-paper';
+import { LoginRequest } from "../data";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
+
+export default function Login({ navigation }) {
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+
+    const login = () => {
+        let loginClass = { email: email, password: password }
+        LoginRequest(loginClass).then((result) => {
+            // try {
+            console.log(result)
+            AsyncStorage.setItem('user', result);
+            const jsonValue = AsyncStorage.getItem('user');
+            // alert(jsonValue.user);
+            // } catch (e) {
+            // console.log(e)
+            // alert('test')
+            // }
+        }
+        )
+    }
+
+    const getProfile = () => {
+
+        return <View className='h-full'>
+            <ImageBackground className="h-full justify-center" source={image} resizeMode="cover" >
+                <View className='px-3'>
+                    <TextInput
+                        className='mb-4'
+                        label="Email"
+                        value={email}
+                        onChangeText={email => setEmail(email)}
+                    />
+                    <TextInput
+                        className='mb-10'
+                        label="Password"
+                        value={password}
+                        onChangeText={password => setPassword(password)}
+                    />
+                    <Button onPress={login} className='mt-10' title='Login' />
+                </View>
+            </ImageBackground>
+
+        </View>
+
+    }
+
+    return (
+        <View >
+            {getProfile()}
+        </View>
+    )
+}
+
